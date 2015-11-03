@@ -20,6 +20,8 @@ namespace BSEReport
         private void uxButtonAggregateData_Click(object sender, EventArgs e)
         {
             //On Click open the Aggregate Data Form
+            FormAggregateData formAggregateData = new FormAggregateData();
+            formAggregateData.Show();
         }
 
         private void uxButtonGenerateReports_Click(object sender, EventArgs e)
