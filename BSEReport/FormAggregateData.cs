@@ -14,10 +14,14 @@ namespace BSEReport
     public partial class FormAggregateData : Form
     {
         Dictionary<string, bool> files;
+        string saveFileLocation = "";
+
+
         public FormAggregateData()
         {
             InitializeComponent();
             InitializeOpenFileDialog();
+            InitializeSaveFileDialog();
             InitializeListView();
             files = new Dictionary<string, bool>();
         }
@@ -34,6 +38,12 @@ namespace BSEReport
             // Allow the user to select multiple images.
             this.openFileDialog.Multiselect = true;
             this.openFileDialog.Title = "CSV Selector";
+        }
+
+        private void InitializeSaveFileDialog()
+        {
+            this.saveFileDialog.Filter = "CSV files(*.csv; *.CSV) | *.csv; *.CSV ";
+            this.saveFileDialog.Title = "Save File To: ";
         }
 
         /// <summary>
@@ -91,6 +101,16 @@ namespace BSEReport
 
             }
 
+        }
+
+        private void uxButtonSave_Click(object sender, EventArgs e)
+        {
+            DialogResult dr = this.saveFileDialog.ShowDialog();
+            if(dr == System.Windows.Forms.DialogResult.OK)
+            {
+                saveFileLocation = this.saveFileDialog.FileName;
+                this.uxLabelFileLocation.Text = saveFileLocation;
+            }
         }
     }
 }
